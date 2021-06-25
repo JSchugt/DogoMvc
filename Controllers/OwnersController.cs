@@ -88,13 +88,17 @@ namespace DogoMvc.Controllers
         public ActionResult Edit(int id)
         {
             Owner owner = _ownerRepo.GetOwner(id);
-
+            OwnerFormViewModel ownerForm = new OwnerFormViewModel()
+            {
+                Owner = owner,
+                Neighborhoods = _neighborhoodRepo.GetAll(),
+            };
             if (owner == null)
             {
                 return NotFound();
             }
 
-            return View(owner);
+            return View(ownerForm);
         }
 
         // POST: OwnersController/Edit/5

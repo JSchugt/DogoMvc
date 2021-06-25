@@ -1,4 +1,5 @@
 ﻿using DogoMvc.Models;
+using DogoMvc.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace DogoMvc.Repositories
         List<Owner> Owners();
         public void DeleteOwner(int id);
         public void UpdateOwner(Owner owner);
+        public void UpdateOwner(OwnerFormViewModel owner);
         public void AddOwner(Owner owner);
 
     }
