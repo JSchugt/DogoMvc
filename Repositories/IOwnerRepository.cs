@@ -10,6 +10,9 @@ namespace DogoMvc.Repositories
     {
         Owner GetOwner(int id);
         List<Owner> Owners();
+        public void DeleteOwner(int id);
+        public void UpdateOwner(Owner owner);
+        public void AddOwner(Owner owner);
 
     }
 }
