@@ -15,6 +15,6 @@ namespace DogoMvc.Repositories
         public void UpdateOwner(Owner owner);
         public void UpdateOwner(OwnerFormViewModel owner);
         public void AddOwner(Owner owner);
-
+        public Owner GetOwnerByEmail(string email);
     }
 }
