@@ -13,6 +13,6 @@ namespace DogoMvc.Models
         public string Notes { get; set; }
         public string ImageUrl { get; set; }
         public Owner Owner { get; set; }
-        public int OwnderId { get; set; }
+        public int OwnerId { get; set; }
     }
 }
