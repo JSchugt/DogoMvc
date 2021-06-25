@@ -1,4 +1,5 @@
 ﻿using DogoMvc.Models;
+using DogoMvc.Models.ViewModels;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -23,6 +24,37 @@ namespace DogoMvc.Repositories
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
+        public void UpdateOwner(OwnerFormViewModel owner)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE Owner
+                            SET 
+                                [Name] = @name, 
+                                Email = @email, 
+                                Address = @address, 
+                                Phone = @phone, 
+                                NeighborhoodId = @neighborhoodId
+                            WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@name", owner.Owner.Name);
+                    cmd.Parameters.AddWithValue("@email", owner.Owner.Email);
+                    cmd.Parameters.AddWithValue("@address", owner.Owner.Address);
+                    cmd.Parameters.AddWithValue("@phone", owner.Owner.Phone);
+                    cmd.Parameters.AddWithValue("@neighborhoodId", owner.Owner.Neighborhood);
+                    cmd.Parameters.AddWithValue("@id", owner.Owner.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
         public Owner GetOwner(int id)
         {
             using (SqlConnection conn = Connection)
